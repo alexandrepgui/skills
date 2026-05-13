@@ -1,7 +1,7 @@
 {
   "name": "alexandre-skills",
   "skills": [
-    "./skills/productivity/teach-me",
-    "./skills/productivity/generate-artifact"
+    "./skills/teach-me",
+    "./skills/generate-artifact"
   ]
 }
