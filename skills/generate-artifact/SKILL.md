@@ -1,6 +1,7 @@
 ---
 name: generate-artifact
 description: Generate a rich local HTML artifact to explain complex findings, plans, or concepts. Use when the user asks for an artifact, HTML report, visual explanation, or shareable summary.
+user-invocable: true
 ---
 
 Generate a rich local HTML artifact that helps the user understand the conversation.
