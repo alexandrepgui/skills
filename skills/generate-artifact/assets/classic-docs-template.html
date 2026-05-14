@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css" id="hl-light">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css" id="hl-dark">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --surface-2: #f1f4f8;
+    --text: #172033;
+    --muted: #657286;
+    --line: #d7dee9;
+    --accent: #2563eb;
+    --accent-soft: #e7efff;
+    --code-bg: #f5f7fa;
+    --good: #12805c;
+    --warn: #a16207;
+    --bad: #b42318;
+    --shadow: 0 14px 40px rgba(23, 32, 51, .08);
+    --sidebar: 280px;
+    --radius: 8px;
+  }
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f141b;
+    --surface: #151b24;
+    --surface-2: #1d2530;
+    --text: #e7ebf2;
+    --muted: #a8b3c2;
+    --line: #2c3745;
+    --accent: #7aa2ff;
+    --accent-soft: rgba(122, 162, 255, .14);
+    --code-bg: #10161f;
+    --good: #6ee7b7;
+    --warn: #f8d477;
+    --bad: #fca5a5;
+    --shadow: 0 18px 44px rgba(0, 0, 0, .28);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.68 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: .88em; }
+  code:not(pre code) { background: var(--code-bg); border: 1px solid var(--line); border-radius: 5px; color: var(--text); padding: .1rem .34rem; white-space: normal; overflow-wrap: break-word; word-break: normal; }
+  pre { margin: 1rem 0; overflow: auto; background: var(--code-bg); border: 1px solid var(--line); border-radius: var(--radius); }
+  pre code.hljs { background: transparent; padding: 1rem 1.1rem; line-height: 1.58; font-size: .84rem; }
+  h1, h2, h3, h4 { line-height: 1.22; letter-spacing: 0; }
+  h1 { margin: 0 0 .65rem; font-size: clamp(2rem, 4vw, 3.55rem); max-width: 980px; }
+  h2 { margin: 3rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: clamp(1.35rem, 2vw, 1.75rem); }
+  h3 { margin: 1.6rem 0 .55rem; font-size: 1.05rem; }
+  p { margin: .75rem 0 1rem; }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1rem 0 1.25rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-size: .9rem; overflow: hidden; }
+  th, td { border-bottom: 1px solid var(--line); padding: .72rem .8rem; text-align: left; vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { background: var(--surface-2); color: var(--muted); font-size: .73rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .page { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); min-height: 100vh; }
+  .sidebar { position: sticky; top: 0; height: 100vh; overflow: auto; border-right: 1px solid var(--line); background: var(--surface); padding: 1.15rem; }
+  .sidebar h2 { margin: 0 0 .8rem; padding: 0; border: 0; font-size: 1rem; }
+  .theme-toggle { width: 100%; margin: .4rem 0 1rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface-2); color: var(--text); padding: .55rem .7rem; cursor: pointer; }
+  nav { display: grid; gap: .15rem; }
+  nav a { color: var(--muted); text-decoration: none; border-radius: 6px; padding: .42rem .55rem; font-size: .9rem; }
+  nav a:hover { background: var(--surface-2); color: var(--text); }
+  main { min-width: 0; width: 100%; max-width: 1400px; padding: 2rem clamp(2rem, 4vw, 4rem) 5rem; }
+  .sub { max-width: 760px; color: var(--muted); font-size: 1.05rem; }
+  .card, .callout, .step, .flow-step { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1rem 1.1rem; min-width: 0; }
+  .callout { border-left: 4px solid var(--accent); }
+  .callout.good { border-left-color: var(--good); }
+  .callout.warn { border-left-color: var(--warn); }
+  .callout.bad { border-left-color: var(--bad); }
+  .grid, .compare, .risk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+  .risk-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .flow-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: .85rem; margin: 1rem 0; }
+  .flow-step { position: relative; padding-top: 3.2rem; overflow-wrap: anywhere; }
+  .flow-step::before { content: attr(data-step); position: absolute; top: .85rem; left: .9rem; display: grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 999px; background: var(--accent); color: white; font-weight: 800; font-size: .78rem; }
+  .flow-step h3 { margin: 0 0 .4rem; font-size: .98rem; }
+  .flow-step p { margin: 0; color: var(--muted); font-size: .9rem; }
+  .steps { counter-reset: step; display: grid; gap: .7rem; margin: 1rem 0; }
+  .step { counter-increment: step; display: flex; gap: .7rem; align-items: flex-start; overflow-wrap: break-word; }
+  .step::before { content: counter(step); display: grid; place-items: center; width: 1.65rem; height: 1.65rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: .78rem; font-weight: 750; }
+  .step > * { min-width: 0; flex: 1; }
+  @media (max-width: 900px) { .page { display: block; } .sidebar { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--line); } main { padding: 1.35rem; } .grid, .compare, .risk-grid, .risk-grid.three { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="sidebar">
+    <h2>{{SHORT_TITLE}}</h2>
+    <button class="theme-toggle" id="theme-toggle" type="button">Toggle theme</button>
+    <nav id="toc"></nav>
+  </aside>
+  <main>
+    <header>
+      <h1>{{TITLE}}</h1>
+      <p class="sub">{{SUBTITLE}}</p>
+    </header>
+    <section id="summary">
+      <h2>TL;DR</h2>
+      <div class="callout">{{SUMMARY}}</div>
+    </section>
+    <section id="flow">
+      <h2>Flow</h2>
+      <div class="flow-row">
+        <article class="flow-step" data-step="1"><h3>Start</h3><p>{{FLOW_STEP_1}}</p></article>
+        <article class="flow-step" data-step="2"><h3>Next</h3><p>{{FLOW_STEP_2}}</p></article>
+        <article class="flow-step" data-step="3"><h3>Finish</h3><p>{{FLOW_STEP_3}}</p></article>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+  const root = document.documentElement;
+  const saved = localStorage.getItem("artifact-theme");
+  if (saved) root.dataset.theme = saved;
+  function syncTheme() {
+    document.getElementById("hl-light").disabled = root.dataset.theme === "dark";
+    document.getElementById("hl-dark").disabled = root.dataset.theme !== "dark";
+  }
+  syncTheme();
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    localStorage.setItem("artifact-theme", root.dataset.theme);
+    syncTheme();
+  });
+  const toc = document.getElementById("toc");
+  document.querySelectorAll("main section[id]").forEach(section => {
+    const h = section.querySelector("h2");
+    if (!h) return;
+    const a = document.createElement("a");
+    a.href = "#" + section.id;
+    a.textContent = h.textContent;
+    toc.appendChild(a);
+  });
+</script>
+</body>
+</html>
