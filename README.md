@@ -8,6 +8,8 @@ Personal agent skills for Claude Code, Codex, Cursor, and other tools that suppo
 npx skills@latest add alexandrepgui/skills
 ```
 
+You may choose individual skills during install, but `/teach-me --artifact` works best when `/generate-artifact` is installed alongside it. Feel free to remove the flag locally to save context if it doesn't work for you.
+
 To install every skill into every detected agent:
 
 ```bash
@@ -16,7 +18,7 @@ npx skills@latest add alexandrepgui/skills --all
 
 ## Skills
 
-- `/teach-me` - learn a topic through an interactive explain-back loop.
+- `/teach-me` - learn a topic through an interactive explain-back loop. Use `--artifact` for an optional first-explanation artifact.
 - `/generate-artifact` - generate a rich local HTML artifact for complex explanations or summaries.
 
 ## Local Development

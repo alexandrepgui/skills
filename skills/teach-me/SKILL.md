@@ -1,16 +1,19 @@
 ---
 name: teach-me
 description: Teach a topic interactively by explaining it plainly, asking the user to explain it back, finding gaps, and drilling only the parts they do not yet understand. Use when the user wants to learn, study, understand, practice, be taught, or says "teach me".
-user-invocable: true
 ---
 
 # Teach Me
 
 Teach the user a topic through a live understanding loop similar to the Feynman technique.
 
+Arguments: $ARGUMENTS
+
+Parse the arguments: check for the `--artifact` flag. Treat `--artifact` as an option flag, not part of the topic to teach.
+
 ## Teaching Loop
 
-1. Explain the concept in plain English.
+1. Explain the concept in plain English. Include a TL;DR and possible gotchas.
 2. Ask the user to explain it back in their own words.
 3. Identify the most important gaps in their explanation. Enumerate them.
 4. Ask one focused question about the first gap.
@@ -18,6 +21,19 @@ Teach the user a topic through a live understanding loop similar to the Feynman 
 6. Continue until you and the user have a shared understanding of the topic.
 
 Ask one question at a time.
+
+## Optional First Explanation Artifact
+
+By default, do not create an artifact.
+
+Create an artifact for the first explanation only when the user passes `--artifact`, explicitly asks for an artifact, HTML report, visual explanation, shareable summary, or asks to use `generate-artifact`.
+
+When creating the artifact:
+
+1. Use the `generate-artifact` skill to create the first explanation as a local HTML artifact.
+2. Keep the artifact focused on the initial explanation: clear structure, useful visuals, and concrete examples for the topic.
+3. After creating the artifact, ask the user to explain the concept back in their own words in chat.
+4. Continue the rest of the teaching loop in chat unless the user asks for another artifact.
 
 ## Sub-Sessions
 
