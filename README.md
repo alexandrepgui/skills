@@ -19,7 +19,7 @@ npx skills@latest add alexandrepgui/skills --all
 ## Skills
 
 - `/teach-me` - learn a topic through an interactive explain-back loop. Use `--artifact` for an optional first-explanation HTML artifact.
-- `/generate-artifact` - generate a rich local HTML artifact for complex explanations or summaries. Uses the Classic Docs template by default; pass `--workbook` for a wider visual workbook style.
+- `/generate-artifact` - generate a rich local HTML artifact for complex explanations or summaries. Comes with a classic docs template.
 
 ## Local Development
 

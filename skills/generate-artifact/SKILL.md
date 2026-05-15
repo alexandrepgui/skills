@@ -5,18 +5,11 @@ description: Generate a rich local HTML artifact to explain complex findings, pl
 
 Generate a rich local HTML artifact that helps the user understand the current topic in the conversation. Include a TL;DR summary and, only if it makes sense, a gotchas section.
 
-Arguments: $ARGUMENTS
-
-Parse the arguments: check for the `--workbook` flag. Treat `--workbook` as an option flag, not part of the artifact topic.
-
 ## Templates
 
-Start from one concrete template:
+Start from one concrete template `assets/classic-docs-template.html`.
 
-- Default: `assets/classic-docs-template.html`. Use this unless `--workbook` is present.
-- `--workbook`: use `assets/workbook-template.html` for a warmer, wider, more visual workbook-style artifact.
-
-Copy the chosen template, replace the placeholder content, and keep its visual direction. Do not merge the two templates into a shared style system and do not invent a new base shell.
+Copy the template, replace the placeholder content, and keep its visual direction. Do not invent a new base shell.
 
 ## Guardrails
 
